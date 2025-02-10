@@ -1,0 +1,215 @@
+name: Autograding Tests
+on:
+  push:
+    branches:
+      - main
+  repository_dispatch:
+    types: [test_result]
+
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: [self-hosted, macOS]
+    if: github.actor != 'github-classroom[bot]'
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: buildProject
+      id: buildProject
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: buildProject
+        setup-command: ''
+        command: xcodebuild build -project HW467.xcodeproj -scheme HW467 -destination 'platform=iOS Simulator,name=iPhone 15 Pro Max,OS=17.5'
+        timeout: 60
+        max-score: 0
+
+    - name: testAllElementsExist
+      id: testAllElementsExist
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: testAllElementsExist
+        setup-command: ''
+        command: xcodebuild test -project HW467.xcodeproj -scheme HW467 -destination 'platform=iOS Simulator,name=iPhone 15 Pro Max,OS=17.5' -only-testing:HW467UITests/HW6UITests/testAllElementsExist | grep -q "Executed 1 test, with 0 failures"
+        timeout: 60
+        max-score: 10
+
+    - name: testLaunchSettings
+      id: testLaunchSettings
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: testLaunchSettings
+        setup-command: ''
+        command: xcodebuild test -project HW467.xcodeproj -scheme HW467 -destination 'platform=iOS Simulator,name=iPhone 15 Pro Max,OS=17.5' -only-testing:HW467UITests/HW6UITests/testLaunchSettings | grep -q "Executed 1 test, with 0 failures"
+        timeout: 60
+        max-score: 5
+
+    - name: testPowerSwitchShouldChangeValues
+      id: testPowerSwitchShouldChangeValues
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: testPowerSwitchShouldChangeValues
+        setup-command: ''
+        command: xcodebuild test -project HW467.xcodeproj -scheme HW467 -destination 'platform=iOS Simulator,name=iPhone 15 Pro Max,OS=17.5' -only-testing:HW467UITests/HW6UITests/testPowerSwitchShouldChangeValues | grep -q "Executed 1 test, with 0 failures"
+        timeout: 60
+        max-score: 5
+
+    - name: testStopButtonShouldWorkWhenInStoppedMode
+      id: testStopButtonShouldWorkWhenInStoppedMode
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: testStopButtonShouldWorkWhenInStoppedMode
+        setup-command: ''
+        command: xcodebuild test -project HW467.xcodeproj -scheme HW467 -destination 'platform=iOS Simulator,name=iPhone 15 Pro Max,OS=17.5' -only-testing:HW467UITests/HW6UITests/testStopButtonShouldWorkWhenInStoppedMode | grep -q "Executed 1 test, with 0 failures"
+        timeout: 60
+        max-score: 5
+
+    - name: testStopButtonShouldWorkWhenInPlayingMode
+      id: testStopButtonShouldWorkWhenInPlayingMode
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: testStopButtonShouldWorkWhenInPlayingMode
+        setup-command: ''
+        command: xcodebuild test -project HW467.xcodeproj -scheme HW467 -destination 'platform=iOS Simulator,name=iPhone 15 Pro Max,OS=17.5' -only-testing:HW467UITests/HW6UITests/testStopButtonShouldWorkWhenInPlayingMode | grep -q "Executed 1 test, with 0 failures"
+        timeout: 60
+        max-score: 5
+
+    - name: testStopButtonShouldWorkWhenInPausedMode
+      id: testStopButtonShouldWorkWhenInPausedMode
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: testStopButtonShouldWorkWhenInPausedMode
+        setup-command: ''
+        command: xcodebuild test -project HW467.xcodeproj -scheme HW467 -destination 'platform=iOS Simulator,name=iPhone 15 Pro Max,OS=17.5' -only-testing:HW467UITests/HW6UITests/testStopButtonShouldWorkWhenInPausedMode | grep -q "Executed 1 test, with 0 failures"
+        timeout: 60
+        max-score: 5
+
+    - name: testStopButtonShouldWorkWhenInFastForwardingMode
+      id: testStopButtonShouldWorkWhenInFastForwardingMode
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: testStopButtonShouldWorkWhenInFastForwardingMode
+        setup-command: ''
+        command: xcodebuild test -project HW467.xcodeproj -scheme HW467 -destination 'platform=iOS Simulator,name=iPhone 15 Pro Max,OS=17.5' -only-testing:HW467UITests/HW6UITests/testStopButtonShouldWorkWhenInFastForwardingMode | grep -q "Executed 1 test, with 0 failures"
+        timeout: 60
+        max-score: 5
+
+    - name: testStopButtonShouldWorkWhenInFastRewindingMode
+      id: testStopButtonShouldWorkWhenInFastRewindingMode
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: testBasicAddtestStopButtonShouldWorkWhenInFastRewindingModeOperation5
+        setup-command: ''
+        command: xcodebuild test -project HW467.xcodeproj -scheme HW467 -destination 'platform=iOS Simulator,name=iPhone 15 Pro Max,OS=17.5' -only-testing:HW467UITests/HW6UITests/testStopButtonShouldWorkWhenInFastRewindingMode | grep -q "Executed 1 test, with 0 failures"
+        timeout: 60
+        max-score: 5
+
+    - name: testStopButtonShouldWorkWhenInRecordingMode
+      id: testStopButtonShouldWorkWhenInRecordingMode
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: testStopButtonShouldWorkWhenInRecordingMode
+        setup-command: ''
+        command: xcodebuild test -project HW467.xcodeproj -scheme HW467 -destination 'platform=iOS Simulator,name=iPhone 15 Pro Max,OS=17.5' -only-testing:HW467UITests/HW6UITests/testStopButtonShouldWorkWhenInRecordingMode | grep -q "Executed 1 test, with 0 failures"
+        timeout: 60
+        max-score: 5
+
+    - name: testRecordButtonOnlyWorksWhenInStoppedMode
+      id: testRecordButtonOnlyWorksWhenInStoppedMode
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: testRecordButtonOnlyWorksWhenInStoppedMode
+        setup-command: ''
+        command: xcodebuild test -project HW467.xcodeproj -scheme HW467 -destination 'platform=iOS Simulator,name=iPhone 15 Pro Max,OS=17.5' -only-testing:HW467UITests/HW6UITests/testRecordButtonOnlyWorksWhenInStoppedMode | grep -q "Executed 1 test, with 0 failures"
+        timeout: 60
+        max-score: 5
+
+    - name: testPlayButton
+      id: testPlayButton
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: testPlayButton
+        setup-command: ''
+        command: xcodebuild test -project HW467.xcodeproj -scheme HW467HW4 -destination 'platform=iOS Simulator,name=iPhone 15 Pro Max,OS=17.5' -only-testing:HW467UITests/HW6UITests/testPlayButton | grep -q "Executed 1 test, with 0 failures"
+        timeout: 60
+        max-score: 5
+
+    - name: testPauseOnlyWorksWhenPlaying
+      id: testPauseOnlyWorksWhenPlaying
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: testPauseOnlyWorksWhenPlaying
+        setup-command: ''
+        command: xcodebuild test -project HW467.xcodeproj -scheme HW467 -destination 'platform=iOS Simulator,name=iPhone 15 Pro Max,OS=17.5' -only-testing:HW467UITests/HW6UITests/testPauseOnlyWorksWhenPlaying | grep -q "Executed 1 test, with 0 failures"
+        timeout: 60
+        max-score: 5
+
+    - name: testFastForwardOnlyWorksWhenPlaying
+      id: testFastForwardOnlyWorksWhenPlaying
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: testFastForwardOnlyWorksWhenPlaying
+        setup-command: ''
+        command: xcodebuild test -project HW467.xcodeproj -scheme HW467 -destination 'platform=iOS Simulator,name=iPhone 15 Pro Max,OS=17.5' -only-testing:HW467UITests/HW6UITests/testFastForwardOnlyWorksWhenPlaying | grep -q "Executed 1 test, with 0 failures"
+        timeout: 60
+        max-score: 5
+
+    - name: testFastRewindOnlyWorksWhenPlaying
+      id: testFastRewindOnlyWorksWhenPlaying
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: testFastRewindOnlyWorksWhenPlaying
+        setup-command: ''
+        command: xcodebuild test -project HW467.xcodeproj -scheme HW467 -destination 'platform=iOS Simulator,name=iPhone 15 Pro Max,OS=17.5' -only-testing:HW467UITests/HW6UITests/testFastRewindOnlyWorksWhenPlaying | grep -q "Executed 1 test, with 0 failures"
+        timeout: 60
+        max-score: 5
+
+    - name: testForceOperations
+      id: testForceOperations
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: testForceOperations
+        setup-command: ''
+        command: xcodebuild test -project HW467.xcodeproj -scheme HW467 -destination 'platform=iOS Simulator,name=iPhone 15 Pro Max,OS=17.5' -only-testing:HW467UITests/HW6UITests/testForceOperations | grep -q "Executed 1 test, with 0 failures"
+        timeout: 60
+        max-score: 5
+
+    - name: testSwitchToTVDismissesDVR
+      id: testSwitchToTVDismissesDVR
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: testSwitchToTVDismissesDVR
+        setup-command: ''
+        command: xcodebuild test -project HW467.xcodeproj -scheme HW467 -destination 'platform=iOS Simulator,name=iPhone 15 Pro Max,OS=17.5' -only-testing:HW467UITests/HW6UITests/testSwitchToTVDismissesDVR | grep -q "Executed 1 test, with 0 failures"
+        timeout: 60
+        max-score: 5
+
+    # Grading
+          
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        TESTALLELEMENTSEXIST_RESULTS: "${{steps.testAllElementsExist.outputs.result}}"
+        TESTLAUNCHSETTINGS_RESULTS: "${{steps.testLaunchSettings.outputs.result}}"
+        TESTPOWERSWITCHSHOULDCHANGEVALUES_RESULTS: "${{steps.testPowerSwitchShouldChangeValues.outputs.result}}"
+        TESTSTOPBUTTONSHOULDWORKWHENINSTOPPEDMODE_RESULTS: "${{steps.testStopButtonShouldWorkWhenInStoppedMode.outputs.result}}"
+        TESTSTOPBUTTONSHOULDWORKWHENINPLAYINGMODE_RESULTS: "${{steps.testStopButtonShouldWorkWhenInPlayingMode.outputs.result}}"
+        TESTSTOPBUTTONSHOULDWORKWHENINPAUSEDMODE_RESULTS: "${{steps.testStopButtonShouldWorkWhenInPausedMode.outputs.result}}"
+        TESTSTOPBUTTONSHOULDWORKWHENINFASTFORWARDINGMODE_RESULTS: "${{steps.testStopButtonShouldWorkWhenInFastForwardingMode.outputs.result}}"
+        TESTSTOPBUTTONSHOULDWORKWHENINFASTREWINDINGMODE_RESULTS: "${{steps.testStopButtonShouldWorkWhenInFastRewindingMode.outputs.result}}"
+        TESTSTOPBUTTONSHOULDWORKWHENINRECORDINGMODE_RESULTS: "${{steps.testStopButtonShouldWorkWhenInRecordingMode.outputs.result}}"
+        TESTRECORDBUTTONONLYWORKSWHENINSTOPPEDMODE_RESULTS: "${{steps.testRecordButtonOnlyWorksWhenInStoppedMode.outputs.result}}"
+        TESTPLAYBUTTON_RESULTS: "${{steps.testPlayButton.outputs.result}}"
+        TESTPAUSEONLYWORKSWHENPLAYING_RESULTS: "${{steps.testPlayButton.outputs.result}}"
+        TESTFASTFORWARDONLYWORKSWHENPLAYING_RESULTS: "${{steps.testFastForwardOnlyWorksWhenPlaying.outputs.result}}"
+        TESTFASTREWINDONLYWORKSWHENPLAYING_RESULTS: "${{steps.testFastRewindOnlyWorksWhenPlaying.outputs.result}}"
+        TESTFORCEOPERATIONS_RESULTS: "${{steps.testForceOperations.outputs.result}}"
+        TESTSWITCHTOTVDISMISSESDVR_RESULTS: "${{steps.testSwitchToTVDismissesDVR.outputs.result}}"
+
+      with:
+        runners: testAllElementsExist,testLaunchSettings,testPowerSwitchShouldChangeValues,testStopButtonShouldWorkWhenInStoppedMode,testStopButtonShouldWorkWhenInPlayingMode,testStopButtonShouldWorkWhenInPausedMode,testStopButtonShouldWorkWhenInFastForwardingMode,testStopButtonShouldWorkWhenInFastRewindingMode,testStopButtonShouldWorkWhenInRecordingMode,testRecordButtonOnlyWorksWhenInStoppedMode,testPlayButton,testPlayButton,testFastForwardOnlyWorksWhenPlaying, testFastRewindOnlyWorksWhenPlaying, testForceOperations, testSwitchToTVDismissesDVR
