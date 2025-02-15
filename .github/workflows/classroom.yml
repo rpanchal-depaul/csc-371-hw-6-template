@@ -127,7 +127,7 @@ jobs:
         setup-command: ''
         command: xcodebuild test -project HW467.xcodeproj -scheme HW467 -destination 'platform=iOS Simulator,name=iPhone 15 Pro Max,OS=17.5' -only-testing:HW467UITests/HW6UITests/testRecordButtonOnlyWorksWhenInStoppedMode | grep -q "Executed 1 test, with 0 failures"
         timeout: 60
-        max-score: 10
+        max-score: 5
 
     - name: testPlayButton
       id: testPlayButton
@@ -137,7 +137,7 @@ jobs:
         setup-command: ''
         command: xcodebuild test -project HW467.xcodeproj -scheme HW467 -destination 'platform=iOS Simulator,name=iPhone 15 Pro Max,OS=17.5' -only-testing:HW467UITests/HW6UITests/testPlayButton | grep -q "Executed 1 test, with 0 failures"
         timeout: 60
-        max-score: 10
+        max-score: 5
 
     - name: testPauseOnlyWorksWhenPlaying
       id: testPauseOnlyWorksWhenPlaying
@@ -177,7 +177,7 @@ jobs:
         setup-command: ''
         command: xcodebuild test -project HW467.xcodeproj -scheme HW467 -destination 'platform=iOS Simulator,name=iPhone 15 Pro Max,OS=17.5' -only-testing:HW467UITests/HW6UITests/testForceOperations | grep -q "Executed 1 test, with 0 failures"
         timeout: 60
-        max-score: 10
+        max-score: 5
 
     - name: testSwitchToTVDismissesDVR
       id: testSwitchToTVDismissesDVR
