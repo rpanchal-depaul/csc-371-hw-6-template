@@ -127,7 +127,7 @@ jobs:
         setup-command: ''
         command: xcodebuild test -project HW467.xcodeproj -scheme HW467 -destination 'platform=iOS Simulator,name=iPhone 15 Pro Max,OS=17.5' -only-testing:HW467UITests/HW6UITests/testRecordButtonOnlyWorksWhenInStoppedMode | grep -q "Executed 1 test, with 0 failures"
         timeout: 60
-        max-score: 5
+        max-score: 10
 
     - name: testPlayButton
       id: testPlayButton
@@ -135,9 +135,9 @@ jobs:
       with:
         test-name: testPlayButton
         setup-command: ''
-        command: xcodebuild test -project HW467.xcodeproj -scheme HW467HW4 -destination 'platform=iOS Simulator,name=iPhone 15 Pro Max,OS=17.5' -only-testing:HW467UITests/HW6UITests/testPlayButton | grep -q "Executed 1 test, with 0 failures"
+        command: xcodebuild test -project HW467.xcodeproj -scheme HW467 -destination 'platform=iOS Simulator,name=iPhone 15 Pro Max,OS=17.5' -only-testing:HW467UITests/HW6UITests/testPlayButton | grep -q "Executed 1 test, with 0 failures"
         timeout: 60
-        max-score: 5
+        max-score: 10
 
     - name: testPauseOnlyWorksWhenPlaying
       id: testPauseOnlyWorksWhenPlaying
@@ -177,7 +177,7 @@ jobs:
         setup-command: ''
         command: xcodebuild test -project HW467.xcodeproj -scheme HW467 -destination 'platform=iOS Simulator,name=iPhone 15 Pro Max,OS=17.5' -only-testing:HW467UITests/HW6UITests/testForceOperations | grep -q "Executed 1 test, with 0 failures"
         timeout: 60
-        max-score: 5
+        max-score: 10
 
     - name: testSwitchToTVDismissesDVR
       id: testSwitchToTVDismissesDVR
@@ -205,11 +205,11 @@ jobs:
         TESTSTOPBUTTONSHOULDWORKWHENINRECORDINGMODE_RESULTS: "${{steps.testStopButtonShouldWorkWhenInRecordingMode.outputs.result}}"
         TESTRECORDBUTTONONLYWORKSWHENINSTOPPEDMODE_RESULTS: "${{steps.testRecordButtonOnlyWorksWhenInStoppedMode.outputs.result}}"
         TESTPLAYBUTTON_RESULTS: "${{steps.testPlayButton.outputs.result}}"
-        TESTPAUSEONLYWORKSWHENPLAYING_RESULTS: "${{steps.testPlayButton.outputs.result}}"
+        TESTPAUSEONLYWORKSWHENPLAYING_RESULTS: "${{steps.testPauseOnlyWorksWhenPlaying.outputs.result}}"
         TESTFASTFORWARDONLYWORKSWHENPLAYING_RESULTS: "${{steps.testFastForwardOnlyWorksWhenPlaying.outputs.result}}"
         TESTFASTREWINDONLYWORKSWHENPLAYING_RESULTS: "${{steps.testFastRewindOnlyWorksWhenPlaying.outputs.result}}"
         TESTFORCEOPERATIONS_RESULTS: "${{steps.testForceOperations.outputs.result}}"
         TESTSWITCHTOTVDISMISSESDVR_RESULTS: "${{steps.testSwitchToTVDismissesDVR.outputs.result}}"
 
       with:
-        runners: testAllElementsExist,testLaunchSettings,testPowerSwitchShouldChangeValues,testStopButtonShouldWorkWhenInStoppedMode,testStopButtonShouldWorkWhenInPlayingMode,testStopButtonShouldWorkWhenInPausedMode,testStopButtonShouldWorkWhenInFastForwardingMode,testStopButtonShouldWorkWhenInFastRewindingMode,testStopButtonShouldWorkWhenInRecordingMode,testRecordButtonOnlyWorksWhenInStoppedMode,testPlayButton,testPlayButton,testFastForwardOnlyWorksWhenPlaying, testFastRewindOnlyWorksWhenPlaying, testForceOperations, testSwitchToTVDismissesDVR
+        runners: testAllElementsExist,testLaunchSettings,testPowerSwitchShouldChangeValues,testStopButtonShouldWorkWhenInStoppedMode,testStopButtonShouldWorkWhenInPlayingMode,testStopButtonShouldWorkWhenInPausedMode,testStopButtonShouldWorkWhenInFastForwardingMode,testStopButtonShouldWorkWhenInFastRewindingMode,testStopButtonShouldWorkWhenInRecordingMode,testRecordButtonOnlyWorksWhenInStoppedMode,testPlayButton,testPauseOnlyWorksWhenPlaying,testFastForwardOnlyWorksWhenPlaying, testFastRewindOnlyWorksWhenPlaying, testForceOperations, testSwitchToTVDismissesDVR
